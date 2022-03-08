@@ -1,0 +1,56 @@
+<h1 class="text-3xl font-bold underline">
+  Tailwind CSS teszt vagyok.
+</h1>
+
+<div class="flex">
+  <div class="bg-white rounded shadow border p-6 w-8/12">
+    <h5 class="text-3xl font-bold mb-4 mt-0">Objektumok</h5>
+    <table class="w-full">
+        <td>ID</td>
+        <td class="w-3/12">Név</td>
+        <td  class="w-8/12">Leírás</td>
+        <td>Mennyiség</td>
+      <tr *ngFor="let object of objects" [class]="{
+        'text-red-500': isUnavailable(object)
+      }">
+        <td>{{object.id}}</td>
+        <td>{{object.name}}</td>
+        <td>{{object.description}}</td>
+        <td>{{object.amount}}</td>
+        <td class="w-min">
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold rounded-full w-6" (click)="increaseStock(object)">+</button>
+        </td>
+        <td class="w-min">
+          <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold rounded-full w-6" [disabled]="object.amount < 1" (click)="decreaseStock(object)">-</button>
+        </td>
+        <td class="w-min">
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold rounded-full w-6" (click)="removeObject(object)">X</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="bg-white rounded shadow border p-6 w-4/12">
+    <form>
+      <h5 class="text-3xl font-bold mb-4 mt-0">Új objektum</h5>
+      <div class="bg-white p-1">
+        <label for="id">ID</label>
+        <input class="bg-white rounded shadow border" type="text" name="id" id="id" [(ngModel)]="newObject.id"><br>
+      </div>
+      <div class="bg-white p-1">
+        <label for="name">Név</label>
+        <input class="bg-white rounded shadow border" type="text" name="name" id="name" [(ngModel)]="newObject.name"><br>
+      </div>
+      <div class="bg-white p-1">
+        <label for="description">Leírás</label>
+        <input class="bg-white rounded shadow border" type="text" name="description" id="description" [(ngModel)]="newObject.description"><br>
+      </div>
+      <div class="bg-white p-1">
+        <label for="amount">Mennyiség</label>
+        <input class="bg-white rounded shadow border" type="text" name="amount" id="amount" [(ngModel)]="newObject.amount">
+      </div>
+    </form>  
+    
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold rounded-full p-2" (click)="addObject()">Hozzáadás</button>
+  </div>
+</div>
