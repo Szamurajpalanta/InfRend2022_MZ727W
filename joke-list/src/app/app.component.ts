@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Joke, jokes } from './joke';
+import { Component } from '@angular/core';
+import { jokes } from './joke';
 
 @Component({
   selector: 'app-root',
