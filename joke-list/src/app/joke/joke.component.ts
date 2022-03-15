@@ -28,4 +28,16 @@ export class JokeComponent implements OnInit {
       return false;
     }
   }
+
+  getDifference(): number {
+    return this.joke.upvotes - this.joke.downvotes; 
+  }
+
+  isNegative(): boolean {
+    if (this.getDifference() < 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

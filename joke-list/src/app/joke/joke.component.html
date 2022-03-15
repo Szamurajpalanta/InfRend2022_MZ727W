@@ -2,5 +2,9 @@
 <button class="btn btn-outline-success rounded m-1" (click)="upvote()">😂 {{joke.upvotes}}</button>
 <button class="btn btn-outline-danger rounded m-1" (click)="downvote()">🫤 {{joke.downvotes}}</button>
 <button class="btn btn-primary rounded m-1" disabled *ngIf="isApproved()">🤩 Community Approved</button>
-<br>
+<label class="text-right" 
+  [ngClass]="{
+    'text-success' : !isNegative(),
+    'text-danger' : isNegative()
+  }">{{getDifference()}}</label>
 <p class="p-2">{{joke.text}}</p>
