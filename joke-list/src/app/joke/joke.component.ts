@@ -7,13 +7,11 @@ import { Joke } from '../joke';
   styleUrls: ['./joke.component.css']
 })
 export class JokeComponent implements OnInit {
-  constructor() { 
-    
-  }
-  @Input() joke!: Joke;
+  constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
+  @Input() joke!: Joke;
 
   upvote() {
     this.joke.upvotes++;

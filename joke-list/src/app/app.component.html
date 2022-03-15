@@ -1,7 +1,20 @@
 <div class="bg-white border-bottom p-6 row m-2">
+  <!--form may be moved to its own component-->
   <div class="col-md-12 border-bottom m-1">
     <h2 class="text-3xl mb-4 mt-0">New Joke</h2>
+    <form>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Username">
+      </div>
+      <div class="input-group mb-3">
+        <textarea class="form-control" placeholder="Joke"></textarea>
+      </div>
+      <div class="col-md-12 clearfix">
+        <button class="btn btn-outline-primary rounded float-right mb-3" (click)="addJoke()">Submit</button>
+      </div>      
+    </form>
   </div>
+  <!--TODO: move this to the list component-->
   <h2 class="text-3xl mb-4 mt-0">List of Jokes</h2>
   <p>Overall stats: {{countAllVotes()}} (😂 {{countUpvotes()}} / 🫤 {{countDownvotes()}})</p>
   <div class="col-md-12 m-1" *ngFor="let joke of jokes">
