@@ -1,8 +1,10 @@
-<div class="bg-white rounded border p-6 row">
-  <div class="col-md-12 rounded border">
+<div class="bg-white border-bottom p-6 row m-2">
+  <div class="col-md-12 border-bottom m-1">
     <h2 class="text-3xl mb-4 mt-0">New Joke</h2>
   </div>
-  <div class="col-md-12" *ngFor="let joke of jokes">
+  <h2 class="text-3xl mb-4 mt-0">List of Jokes</h2>
+  <p>Overall stats: {{countAllVotes()}} (😂 {{countUpvotes()}} / 🫤 {{countDownvotes()}})</p>
+  <div class="col-md-12 m-1" *ngFor="let joke of jokes">
     <app-joke [joke]="joke"></app-joke>
   </div>
 </div>
