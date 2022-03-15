@@ -16,10 +16,5 @@
     </form>
     -->
   </div>
-  <!--TODO: move this to the list component-->
-  <h2 class="text-3xl mb-4 mt-0">List of Jokes</h2>
-  <p>Overall stats: {{countAllVotes()}} (😂 {{countUpvotes()}} / 🫤 {{countDownvotes()}})</p>
-  <div class="col-md-12 m-1" *ngFor="let joke of jokes">
-    <app-joke [joke]="joke"></app-joke>
-  </div>
+  <app-list></app-list>
 </div>
