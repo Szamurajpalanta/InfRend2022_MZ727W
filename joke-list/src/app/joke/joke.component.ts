@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter,  OnInit } from '@angular/core';
+import { Joke, jokes } from '../joke';
 
 @Component({
   selector: 'app-joke',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./joke.component.css']
 })
 export class JokeComponent implements OnInit {
-
-  constructor() { }
+  constructor() { 
+    
+  }
+  @Input() joke!: Joke;
+  @Output() vote = new EventEmitter<boolean>();
 
   ngOnInit(): void {
   }
 
+  upvote() {
+    this.vote.emit(true);
+  }
+
+  downvote() {
+    this.vote.emit(false);
+  }
 }
