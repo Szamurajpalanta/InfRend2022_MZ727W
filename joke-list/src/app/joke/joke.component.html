@@ -1,6 +1,6 @@
 <h6 class="font-bold" >By: {{joke.user}}</h6>
-<button class="btn btn-outline-success rounded m-1">😂 {{joke.upvotes}}</button>
-<button class="btn btn-outline-danger rounded m-1">🫤 {{joke.downvotes}}</button>
-<button class="btn btn-primary rounded m-1" disabled>🤩 Community Approved</button>
+<button class="btn btn-outline-success rounded m-1" (click)="upvote()">😂 {{joke.upvotes}}</button>
+<button class="btn btn-outline-danger rounded m-1" (click)="downvote()">🫤 {{joke.downvotes}}</button>
+<button class="btn btn-primary rounded m-1" disabled *ngIf="isApproved()">🤩 Community Approved</button>
 <br>
 <p class="p-2">{{joke.text}}</p>

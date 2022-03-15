@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter,  OnInit } from '@angular/core';
-import { Joke, jokes } from '../joke';
+import { Component, Input, EventEmitter,  OnInit } from '@angular/core';
+import { Joke } from '../joke';
 
 @Component({
   selector: 'app-joke',
@@ -11,16 +11,23 @@ export class JokeComponent implements OnInit {
     
   }
   @Input() joke!: Joke;
-  @Output() vote = new EventEmitter<boolean>();
 
   ngOnInit(): void {
   }
 
   upvote() {
-    this.vote.emit(true);
+    this.joke.upvotes++;
   }
 
   downvote() {
-    this.vote.emit(false);
+    this.joke.downvotes++;
+  }
+
+  isApproved(): boolean {
+    if (this.joke.upvotes - this.joke.downvotes > 50) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

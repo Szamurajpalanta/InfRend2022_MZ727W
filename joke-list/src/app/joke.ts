@@ -8,7 +8,7 @@ export interface Joke {
 export const jokes: Joke[] = [
     {
         user: "Aunt Arctic",
-        text: "Why don't you see a penguin in the U.K.?<br/>Because they're afraid of Wales!",
+        text: "Why don't you see a penguin in the U.K.? Because they're afraid of Wales!",
         upvotes: 20,
         downvotes: 10
     },
