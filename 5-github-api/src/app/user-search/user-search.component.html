@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-    <div class="col">
-        <app-user-details [githubProfile]="githubProfile"></app-user-details>
+    <div class="col" *ngFor="let githubUser of githubProfiles">
+        <app-user-details [githubUser]="githubUser"></app-user-details>
     </div>
 </div>

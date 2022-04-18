@@ -14,8 +14,8 @@ export class GithubService {
 
   private baseUrl = 'https://api.github.com';
 
-  getMultipleUsers(user: string): Observable<User[]> {
-    let params = new HttpParams().set('q', user);
+  getMultipleUsers(query: string): Observable<User[]> {
+    let params = new HttpParams().set('q', query);
     const usersUrl = '/search/users';
     return this.http.get<User[]>(this.baseUrl + usersUrl, {
       params: params
@@ -28,8 +28,11 @@ export class GithubService {
   }
 
   getRepos(query: string): Observable<Repository[]> {
+    let params = new HttpParams().set('q', query);
     const reposUrl = `/search/repositories?q=${query}`;
-    return this.http.get<Repository[]>(this.baseUrl + reposUrl);
+    return this.http.get<Repository[]>(this.baseUrl + reposUrl, {
+      params: params
+    });
   }
 
   getSingleUser(query: string): Observable<User> {

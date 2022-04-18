@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
+import { Repository } from '../models/repo';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-user-search',
@@ -9,19 +11,15 @@ import { GithubService } from 'src/app/services/github.service';
 export class UserSearchComponent implements OnInit {
 
   public githubUserQuery!: string;
-  public githubProfile!:any;
-  public githubRepo!:any[];
+  public githubProfiles!:User[];
+  public githubRepos!:Repository[];
   
   constructor(private githubService:GithubService) { }
 
   public searchUser() {
-    this.githubService.getSingleUser(this.githubUserQuery).subscribe(
-      (data) => { this.githubProfile = data; }
+    this.githubService.getMultipleUsers(this.githubUserQuery).subscribe(
+      (data) => { this.githubProfiles = data}
     );
-
-    this.githubService.getRepos(this.githubUserQuery).subscribe(
-      (data) => { this.githubRepo = data; },
-    )
   }
 
   ngOnInit(): void {

@@ -9,10 +9,18 @@ import { Repository } from '../models/repo';
 export class RepoDetailsComponent implements OnInit {
 
   @Input() githubRepo!:Repository;
+  isVisible: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  changeVisibility() {
+    if (this.isVisible) {
+      this.isVisible = false;
+    } else {
+      this.isVisible = true;
+    }
+  }
 }

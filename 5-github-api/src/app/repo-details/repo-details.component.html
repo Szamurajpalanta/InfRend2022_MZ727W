@@ -1,1 +1,15 @@
-<p>repo-details works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <h4>{{githubRepo.name}}</h4>
+            <div class="col w-auto align-self-center">
+                <a *ngIf="isVisible" (click)="changeVisibility()" class="btn btn-success btn-sm">Collapse</a>
+                <a *ngIf="!isVisible" (click)="changeVisibility()" class="btn btn-success btn-sm">Expand</a>
+            </div>
+        </div>
+        <div *ngIf="isVisible">
+            <p class="card-text">{{githubRepo.description}}</p>
+            <a [href]="githubRepo.html_url" class="btn btn-success btn-sm">Link</a>
+        </div>
+    </div>
+</div>

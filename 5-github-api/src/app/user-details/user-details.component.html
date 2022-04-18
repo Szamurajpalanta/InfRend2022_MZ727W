@@ -3,11 +3,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4 w-auto">
-                <img [src]="githubProfile.avatar_url" width="60">
+                <img [src]="githubUser.avatar_url" width="60">
             </div>
             <div class="col-md-8 align-self-center">
-                <h4>{{githubProfile.name}} <i>({{githubProfile.login}})</i></h4>
-                <p>{{githubProfile.public_repos}} public repositories | {{githubProfile.followers}} followers<p>
+                <h4>{{githubUser.name}} <i>({{githubUser.login}})</i></h4>
+                <p>{{githubUser.public_repos}} public repositories | {{githubUser.followers}} followers<p>
             </div>
             <div class="col w-auto align-self-center">
                 <a *ngIf="isVisible" (click)="changeVisibility()" class="btn btn-success btn-sm">Collapse</a>
@@ -15,8 +15,11 @@
             </div>
         </div>
         <div *ngIf="isVisible">
-            <p class="card-text">{{githubProfile.bio}}</p>
-            <a [href]="githubProfile.html_url" class="btn btn-success btn-sm">Profil</a>
+            <p class="card-text">{{githubUser.bio}}</p>
+            <a [href]="githubUser.html_url" class="btn btn-success btn-sm">Link</a>
+            <div *ngFor="let githubRepo of userRepositories">
+                <app-repo-details [githubRepo]="githubRepo"></app-repo-details>
+            </div>
         </div>
     </div>
 </div>
