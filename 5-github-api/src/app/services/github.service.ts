@@ -7,6 +7,7 @@ import { Repository } from '../models/repo';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GithubService {
 
   constructor(private http: HttpClient) { }
@@ -28,12 +29,12 @@ export class GithubService {
 
   getRepos(query: string): Observable<Repository[]> {
     const reposUrl = `/search/repositories?q=${query}`;
-    return this.http.get<Repository[]>(reposUrl);
+    return this.http.get<Repository[]>(this.baseUrl + reposUrl);
   }
 
   getSingleUser(query: string): Observable<User> {
     const userUrl = `/users/${query}`;
-    return this.http.get<User>(userUrl);
+    return this.http.get<User>(this.baseUrl + userUrl);
   }
 }
 

@@ -1,1 +1,16 @@
-<p>user-search works!</p>
+<div class="card-body">
+    <form class="form-inline" (submit)="searchUser()">
+        <div class="form-group">
+            <input [(ngModel)]="githubUserQuery" name="user" size="30" type ="search" class="form-control" placeholder="github profil">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-danger btn-sm mt-3">
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-user-details [githubProfile]="githubProfile"></app-user-details>
+    </div>
+</div>
