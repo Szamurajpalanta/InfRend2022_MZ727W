@@ -9,10 +9,19 @@ import { User } from '../models/user';
 export class UserDetailsComponent implements OnInit {
 
   @Input() githubProfile!:User;
+  isVisible: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeVisibility() {
+    if (this.isVisible) {
+      this.isVisible = false;
+    } else {
+      this.isVisible = true;
+    }
   }
 
 }
