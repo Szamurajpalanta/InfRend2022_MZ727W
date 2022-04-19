@@ -16,6 +16,7 @@
         </div>
         <div *ngIf="isVisible">
             <p class="card-text">{{githubUser.bio}}</p>
+            <p>Type: {{githubUser.type}}</p>
             <a [href]="githubUser.html_url" class="btn btn-success btn-sm">Link</a>
             <div *ngFor="let githubRepo of userRepositories">
                 <app-repo-details [githubRepo]="githubRepo"></app-repo-details>

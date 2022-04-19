@@ -7,4 +7,5 @@ export interface User {
     html_url: string;
     public_repos: number;
     followers: number;
+    type: string;
 }

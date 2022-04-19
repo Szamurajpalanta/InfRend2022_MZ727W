@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <h4>{{githubRepo.name}}</h4>
+            <h4>{{githubRepo.name}} ({{githubRepo.owner.login}})</h4>
             <div class="col w-auto align-self-center">
                 <a *ngIf="isVisible" (click)="changeVisibility()" class="btn btn-success btn-sm">Collapse</a>
                 <a *ngIf="!isVisible" (click)="changeVisibility()" class="btn btn-success btn-sm">Expand</a>
@@ -9,6 +9,8 @@
         </div>
         <div *ngIf="isVisible">
             <p class="card-text">{{githubRepo.description}}</p>
+            <p>Language: {{githubRepo.language}}</p>
+            <p>Stars: {{githubRepo.stargazers_count}}</p>
             <a [href]="githubRepo.html_url" class="btn btn-success btn-sm">Link</a>
         </div>
     </div>

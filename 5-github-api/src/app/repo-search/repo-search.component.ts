@@ -17,7 +17,7 @@ export class RepoSearchComponent implements OnInit {
 
   public searchRepos() {
     this.githubService.getRepositorySearchResults(this.githubRepoQuery).subscribe(
-      (data) => { this.githubResults = data}
+      (data) => { this.githubResults = data }
     );
   }
 

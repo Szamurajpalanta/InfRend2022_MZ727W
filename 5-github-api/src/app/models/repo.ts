@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Repository {
     id: number;
     name: string;
@@ -7,4 +9,6 @@ export interface Repository {
     language: string;
     size: number;
     html_url: string;
+    owner: User;
+    stargazers_count: number;
 }
