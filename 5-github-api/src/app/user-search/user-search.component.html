@@ -1,16 +1,17 @@
 <div class="card-body">
-    <form class="form-inline" (submit)="searchUser()">
+    <form class="form-inline" (submit)="searchUsers()">
         <div class="form-group">
-            <input [(ngModel)]="githubUserQuery" name="user" size="30" type ="search" class="form-control" placeholder="github profil">
+            <input [(ngModel)]="githubUserQuery" name="user" size="30" class="form-control" placeholder="GitHub username">
         </div>
         <div class="form-group">
-            <input type="submit" value="Search" class="btn btn-danger btn-sm mt-3">
+            <input type="submit" value="Search" class="btn btn-success btn-sm mt-3">
         </div>
     </form>
+    <a (click)="debugValami()" class="btn btn-danger btn-sm">debug vagyok</a>
 </div>
 
 <div class="row">
-    <div class="col" *ngFor="let githubUser of githubProfiles">
+    <div *ngFor="let githubUser of githubResults.items">
         <app-user-details [githubUser]="githubUser"></app-user-details>
     </div>
 </div>

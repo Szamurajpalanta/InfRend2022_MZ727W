@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 import { Repository } from '../models/repo';
+import { UserSearchResults } from '../models/search-user';
 import { User } from '../models/user';
 
 @Component({
@@ -11,15 +12,21 @@ import { User } from '../models/user';
 export class UserSearchComponent implements OnInit {
 
   public githubUserQuery!: string;
-  public githubProfiles!:User[];
-  public githubRepos!:Repository[];
+  public githubResults!: UserSearchResults;
+  public githubRepos!: Repository[];
   
   constructor(private githubService:GithubService) { }
 
-  public searchUser() {
-    this.githubService.getMultipleUsers(this.githubUserQuery).subscribe(
-      (data) => { this.githubProfiles = data}
+  public searchUsers() {
+    this.githubService.getMultipleUsersSearchResults(this.githubUserQuery).subscribe(
+      (data) => { this.githubResults = data}
     );
+  }
+
+  public debugValami() {
+    this.githubResults.items.forEach(element => {
+      console.log(element.login);
+    });    
   }
 
   ngOnInit(): void {

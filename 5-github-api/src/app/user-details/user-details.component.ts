@@ -18,12 +18,14 @@ export class UserDetailsComponent implements OnInit {
   
 
   constructor(private githubService:GithubService) {
-    this.githubService.getUserRepos(this.githubUser.login).subscribe(
-      (data) => { this.userRepositories = data; },
-    );
+    
   }
 
   ngOnInit(): void {
+    this.githubService.getUserRepos(this.githubUser.login).subscribe(
+      (data) => { this.userRepositories = data; },
+    );
+    console.log(this.githubUser.name);
   }
 
   changeVisibility() {

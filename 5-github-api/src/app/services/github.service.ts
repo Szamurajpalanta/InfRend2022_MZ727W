@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Repository } from '../models/repo';
+import { UserSearchResults } from '../models/search-user';
+import { RepoSearchResults } from '../models/search-repo';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,13 @@ export class GithubService {
   constructor(private http: HttpClient) { }
 
   private baseUrl = 'https://api.github.com';
+  public userResults!: UserSearchResults;
+  public repoResults!: RepoSearchResults;
 
-  getMultipleUsers(query: string): Observable<User[]> {
+  getMultipleUsersSearchResults(query: string): Observable<UserSearchResults> {
     let params = new HttpParams().set('q', query);
     const usersUrl = '/search/users';
-    return this.http.get<User[]>(this.baseUrl + usersUrl, {
+    return this.http.get<UserSearchResults>(this.baseUrl + usersUrl, {
       params: params
     });
   }
