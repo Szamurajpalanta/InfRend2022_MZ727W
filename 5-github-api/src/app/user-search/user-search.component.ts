@@ -25,7 +25,7 @@ export class UserSearchComponent implements OnInit {
 
   public debugValami() {
     this.githubResults.items.forEach(element => {
-      console.log(element.login);
+      console.log(element.name);
     });    
   }
 

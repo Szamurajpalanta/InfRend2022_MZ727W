@@ -1,1 +1,16 @@
-<p>repo-search works!</p>
+<div class="card-body">
+    <form class="form-inline" (submit)="searchRepos()">
+        <div class="form-group">
+            <input [(ngModel)]="githubRepoQuery" name="repo" size="30" class="form-control" placeholder="GitHub repository name">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-success btn-sm mt-3">
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div *ngFor="let githubRepo of githubResults.items">
+        <app-repo-details [githubRepo]="githubRepo"></app-repo-details>
+    </div>
+</div>

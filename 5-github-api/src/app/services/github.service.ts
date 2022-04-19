@@ -31,10 +31,10 @@ export class GithubService {
     return this.http.get<Repository[]>(this.baseUrl + reposUrl);
   }
 
-  getRepos(query: string): Observable<Repository[]> {
+  getRepositorySearchResults(query: string): Observable<RepoSearchResults> {
     let params = new HttpParams().set('q', query);
-    const reposUrl = `/search/repositories?q=${query}`;
-    return this.http.get<Repository[]>(this.baseUrl + reposUrl, {
+    const reposUrl = '/search/repositories';
+    return this.http.get<RepoSearchResults>(this.baseUrl + reposUrl, {
       params: params
     });
   }
