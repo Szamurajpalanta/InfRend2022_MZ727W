@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Task } from '../models/task';
 import { TaskService } from '../services/task.service';
 
@@ -10,14 +11,25 @@ import { TaskService } from '../services/task.service';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [];
+  newTask: Task = new Task;
+  statusMessage: string = '';
+  showStatusMessage: boolean = false;
+  success: boolean = false;  
 
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private formBuilder: FormBuilder
   ) { }
 
   async ngOnInit() {
-    this.getAllTasks();
+    this.getAllTasks();    
   }
+
+  newTaskForm = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [''],
+    date: ['', [Validators.required]],
+  });
 
   async getAllTasks() {
     try {
@@ -28,8 +40,25 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  addNewTask() {
+  getCurrentDate(): Date {
+    return new Date();
+  }
 
+  async addNewTask() {
+    this.showStatusMessage = true;
+    this.newTask = this.newTaskForm.value;
+    this.newTask.isDone = false;
+    console.log(this.newTask);
+
+    try {
+      const insertedUser = await this.taskService.createTask(this.newTask);
+      this.statusMessage = "A feladat sikeresen létejött.";
+      this.success = true;
+      this.getAllTasks();
+    } catch (err: any) {
+      this.statusMessage = err.error.message();
+      this.success = false;
+    }
   }
 
 }

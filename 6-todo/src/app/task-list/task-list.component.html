@@ -1,3 +1,18 @@
-<div class="col-md-12 border-top m-1" *ngFor="let task of tasks">
+<div class="row">
+  <div class="alert p-1 m-1" [ngClass]="{'alert-success' : success, 'alert-danger' : !success}"  role="alert" *ngIf="showStatusMessage">
+    {{ statusMessage }}
+  </div>
+  <h4 class="m-1">Új feladat létrehozása</h4>
+  <form [formGroup]="newTaskForm">
+      <div class="col-md">
+          <input type="text" class="form-control m-1" id="name" name="name" formControlName="name" placeholder="Feladat megnevezése">
+          <input type="text" class="form-control m-1" id="description" name="description" formControlName="description" placeholder="Feladat leírása">
+          <input type="date" class="form-control m-1" id="date" name="date" formControlName="date" placeholder="{{getCurrentDate()}}">
+      </div>
+      <button type="button" class="btn btn-success m-1" (click)="addNewTask()">Létrehozás</button>
+  </form>
+</div>
+
+<div class="col m-1" *ngFor="let task of tasks">
   <app-task-details [task]="task"></app-task-details>
 </div>
