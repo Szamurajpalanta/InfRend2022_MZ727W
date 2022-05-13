@@ -1,9 +1,9 @@
-const { Todo } = require('../models')
+const { Task } = require('../models')
 
-const getAllTodo = async (req, res) => {
+const getAllTasks = async (req, res) => {
     try {
-        const todos = await Todo.findAll();
-        return res.status(200).json(todos);
+        const tasks = await Task.findAll();
+        return res.status(200).json(tasks);
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -11,14 +11,14 @@ const getAllTodo = async (req, res) => {
     }
 }
 
-const getTodoById = async (req, res) => {
+const getTaskById = async (req, res) => {
     try {
-        const todoId = req.params.id;
-        const todo = await Todo.findOne({
-            where: { id: todoId },
+        const taskId = req.params.id;
+        const task = await Task.findOne({
+            where: { id: taskId },
         });
-        if (todo) {
-            return res.status(200).json(todo);
+        if (task) {
+            return res.status(200).json(task);
         }
         return res.status(404).send('404: Nem található rekord a megadott azonosítóval.');
     } catch (err) {
@@ -28,10 +28,10 @@ const getTodoById = async (req, res) => {
     }
 }
 
-const createTodo = async (req, res) => {
+const createTask = async (req, res) => {
     try {
-        const todo = await Todo.create(req.body);
-        return res.status(200).json(todo);
+        const task = await Task.create(req.body);
+        return res.status(200).json(task);
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -39,11 +39,11 @@ const createTodo = async (req, res) => {
     }
 }
 
-const updateTodo = async (req, res) => {
+const updateTask = async (req, res) => {
     try {
-        const todoId  = req.params.id;
-        const updated = await Todo.update(req.body, {
-            where: { id: todoId }
+        const taskId  = req.params.id;
+        const updated = await Task.update(req.body, {
+            where: { id: taskId }
         });
         if (updated) {
             return res.status(200).json(updated);
@@ -56,11 +56,11 @@ const updateTodo = async (req, res) => {
     }
 };
 
-const deleteTodo = async (req, res) => {
+const deleteTask = async (req, res) => {
     try {
-        const { todoId } = req.params;
-        const deleted = await Todo.destroy({
-            where: { id: todoId }
+        const { taskId } = req.params;
+        const deleted = await Task.destroy({
+            where: { id: taskId }
         });
         if (deleted) {
             return res.status(200).send("A megadott rekord sikeresen törölve lett.");
@@ -74,9 +74,9 @@ const deleteTodo = async (req, res) => {
 };
 
 module.exports = {    
-    getAllTodo,
-    getTodoById,
-    createTodo,
-    updateTodo,
-    deleteTodo
+    getAllTasks,
+    getTaskById,
+    createTask,
+    updateTask,
+    deleteTask
 }

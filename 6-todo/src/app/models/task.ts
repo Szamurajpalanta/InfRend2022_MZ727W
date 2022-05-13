@@ -1,4 +1,4 @@
-export class Todo {
+export class Task {
     name!: string;
     description!: string;
     dueDate!: Date;

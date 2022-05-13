@@ -5,7 +5,7 @@ const {
 } = require('sequelize');
 const { moveSyntheticComments } = require('typescript');
 module.exports = (sequelize, DataTypes) => {
-  class Todo extends Model {
+  class Task extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  let today = new Date();
-  Todo.init({
+  Task.init({
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -42,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
       sequelize,
       timestamps: false,
-      modelName: 'Todo'
+      modelName: 'Task'
     });
-  return Todo;
+  return Task;
 };

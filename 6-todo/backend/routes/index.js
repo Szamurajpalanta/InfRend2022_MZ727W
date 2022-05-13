@@ -3,10 +3,10 @@ const controllers = require('../controllers');
 const router = Router();
 router.get('/', (req, res) => res.send('Router vagyok.'));
 
-router.post('/todo', controllers.createTodo);
-router.get('/todo', controllers.getAllTodo);
-router.get('/todo/:id', controllers.getTodoById);
-router.put('/todo/:id', controllers.updateTodo);
-router.delete('/todo/:id', controllers.deleteTodo);
+router.post('/task', controllers.getTaskById);
+router.get('/task', controllers.getAllTasks);
+router.get('/task/:id', controllers.getTaskById);
+router.put('/task/:id', controllers.updateTask);
+router.delete('/task/:id', controllers.deleteTask);
 
 module.exports = router;

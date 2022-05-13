@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
-const { sequelize, Todo } = require('./models')
+const { sequelize, Task } = require('./models')
 const cors = require('cors');
 
 const app = express()
@@ -10,7 +10,7 @@ app.use('/api', routes);
 
 app.listen({port: 3000}, async () => {    
     await sequelize.authenticate();
-    await Todo.sync({ alter: true });
+    await Task.sync({ alter: true });
     console.log('Database connected!');
     console.log('Listening on port 3000...');
 });
