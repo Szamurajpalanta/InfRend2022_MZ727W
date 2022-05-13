@@ -20,7 +20,9 @@ const getTaskById = async (req, res) => {
         if (task) {
             return res.status(200).json(task);
         }
-        return res.status(404).send('404: Nem található rekord a megadott azonosítóval.');
+        return res.status(404).json({
+            message: '404: Nem található rekord a megadott azonosítóval.'
+        });
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -41,14 +43,19 @@ const createTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
     try {
-        const taskId  = req.params.id;
+        const taskId = req.params.id;
+        const task = await Task.findOne({
+            where: { id: taskId },
+        });
         const updated = await Task.update(req.body, {
             where: { id: taskId }
         });
         if (updated) {
             return res.status(200).json(updated);
         }
-        throw new Error('404: A megadott rekord nem található.');
+        return res.status(404).json({
+            message: '404: A megadott rekord nem található.'
+        });
     } catch (err) {
     return res.status(500).json({
         message: err.message
@@ -58,14 +65,17 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
     try {
-        const { taskId } = req.params;
-        const deleted = await Task.destroy({
-            where: { id: taskId }
+        const taskId = req.params.id;
+        const task = await Task.findOne({
+            where: { id: taskId },
         });
+        const deleted = await task.destroy();
         if (deleted) {
             return res.status(200).send("A megadott rekord sikeresen törölve lett.");
         }
-        throw new Error("404: A megadott rekord nem található.");
+        return res.status(404).json({
+            message: '404: A megadott rekord nem található.'
+        });
     } catch (err) {
         return res.status(500).json({
             message: err.message

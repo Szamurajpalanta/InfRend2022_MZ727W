@@ -37,7 +37,7 @@ export class TaskService {
   }
 
   deleteTask(id: number) {
-    return lastValueFrom(this.http.delete<Task>(`http://localhost:3000/api/todo/${id}`));
+    return lastValueFrom(this.http.delete<Task>(`http://localhost:3000/api/task/${id}`));
   }
 
   getLowestAvailableId(tasks: Task[]): number {
