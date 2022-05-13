@@ -11,13 +11,17 @@ export class TaskDetailsComponent implements OnInit {
 
   @Input() task!: Task;
   isEditing: boolean = false;
-  state: number = 0;
+  state: number = 0;  
+  tempName: string = '';
+  tempDescription: string = '';
 
   constructor(
     private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
+    this.setTempVariables();
+
     if (this.task.isDone) {
       this.state = 1;
     }
@@ -31,9 +35,15 @@ export class TaskDetailsComponent implements OnInit {
     }
   }
 
+  setTempVariables() {
+    this.tempName = this.task.name;
+    this.tempDescription = this.task.description;
+  }
+
   markDone() {
-    this.updateTask();
+    this.task.isDone = true;
     this.state = 1;
+    this.updateTask();    
   }
 
   getDueDateString(): string {
@@ -41,8 +51,17 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   async updateTask() {
-    if (this.isEditing) { this.toggleEditMode(); }
-    
+    if (this.isEditing) {
+      this.task.name = this.tempName;
+      this.task.description = this.tempDescription;
+      this.toggleEditMode();
+    }
+
+    try {
+      await this.taskService.updateTask(this.task);
+    } catch (err: any) {
+      console.error(err);
+    }    
   }
 
   async deleteTask() {

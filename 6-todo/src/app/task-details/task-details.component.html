@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md">
       <h4 class="m-1" *ngIf="!isEditing">{{task.name}}</h4>
+      <input type="text" class="form-control m-1" id="name" name="name" placeholder="Feladat megnevezése" [(ngModel)]="tempName" *ngIf="isEditing">
     </div>
     <div class="col-md-1">
       <button type="button" class="btn btn-success m-1" (click)="markDone()" *ngIf="!isEditing && state === 0">Kész</button>
@@ -17,7 +18,8 @@
   </div>
   <div class="row">
     <div class="col-md">      
-      <p class="m-1">{{task.description}}</p>
+      <p class="m-1" *ngIf="!isEditing">{{task.description}}</p>
+      <input type="text" class="form-control m-1" id="name" name="name" placeholder="Feladat leírása" [(ngModel)]="tempDescription" *ngIf="isEditing">
       <p class="m-1">Határidő: {{getDueDateString()}}</p>
     </div>
   </div>
