@@ -44,10 +44,13 @@ const createTask = async (req, res) => {
 const updateTask = async (req, res) => {
     try {
         const taskId = req.params.id;
-        const task = await Task.findOne({
-            where: { id: taskId },
-        });
-        const updated = await Task.update(req.body, {
+        const updated = await Task.upsert(
+        {
+            name: req.params.name,
+            description: req.params.description,
+            isDone: req.params.isDone
+        },
+        {
             where: { id: taskId }
         });
         if (updated) {
