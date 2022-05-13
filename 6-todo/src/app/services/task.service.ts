@@ -39,4 +39,15 @@ export class TaskService {
   deleteTask(id: number) {
     return lastValueFrom(this.http.delete<Task>(`http://localhost:3000/api/todo/${id}`));
   }
+
+  getLowestAvailableId(tasks: Task[]): number {
+    let i = 0;
+    tasks.forEach(task => {
+      if(tasks.indexOf(task) == -1) {
+        return i;
+      }
+      i++;
+    });
+    return tasks[tasks.length - 1].id + 1;
+  }
 }

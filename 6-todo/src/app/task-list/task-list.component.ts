@@ -62,7 +62,7 @@ export class TaskListComponent implements OnInit {
   async addNewTask() {
     this.showStatusMessage = true;
     this.newTask = this.newTaskForm.value;
-    // this.newTask.dueDate = this.newTask.dueDate.toString();
+    this.newTask.id = this.taskService.getLowestAvailableId(await this.taskService.getAllTasks());
     this.newTask.isDone = false;
     console.log(this.newTask);
 
