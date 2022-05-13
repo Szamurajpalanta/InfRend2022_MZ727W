@@ -10,16 +10,16 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  getSubject(id: number) {
+  getTodoById(id: number) {
     return lastValueFrom(this.http.get<Todo[]>(`http://localhost:3000/api/todo/${id}`));
   }
 
-  getSubjects() {
+  getAllTodos() {
     return lastValueFrom(this.http.get<Todo[]>('http://localhost:3000/api/todo'));
   }
 
   /*
-  searchSubjects(query: string) {
+  searchTodos(query: string) {
     return lastValueFrom(this.http.get<Todo[]>('http://localhost:3000/api/search/subjects', {
       params: {
         search: query
@@ -28,15 +28,15 @@ export class TodoService {
   }
   */
 
-  createSubject(subject: Todo) {
+  createTodo(subject: Todo) {
     return lastValueFrom(this.http.post<Todo>('http://localhost:3000/api/todo', subject));
   }
 
-  updateSubject(subject: Todo) {
+  updateTodo(subject: Todo) {
     return lastValueFrom(this.http.put<Todo>('http://localhost:3000/api/todo', subject));
   }
 
-  deleteSubject(id: number) {
+  deleteTodo(id: number) {
     return lastValueFrom(this.http.delete<Todo>(`http://localhost:3000/api/todo/${id}`));
   }
 }
