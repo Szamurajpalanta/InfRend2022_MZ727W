@@ -28,12 +28,12 @@ export class TaskService {
   }
   */
 
-  createTask(subject: Task) {
-    return lastValueFrom(this.http.post<Task>('http://localhost:3000/api/task', subject));
+  createTask(task: Task) {
+    return lastValueFrom(this.http.post<Task>('http://localhost:3000/api/task', task));
   }
 
-  updateTask(subject: Task) {
-    return lastValueFrom(this.http.put<Task>('http://localhost:3000/api/task', subject));
+  updateTask(task: Task) {
+    return lastValueFrom(this.http.put<Task>('http://localhost:3000/api/task', task));
   }
 
   deleteTodo(id: number) {
