@@ -41,13 +41,23 @@ export class TaskListComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+
+    this.sortTasks();
   }
 
   sortTasks() {
+    this.completedTasks = [];
+    this.overdueTasks = [];
+    this.undoneTasks = [];
+
+    var today = new Date();
+    console.log(today);
     this.tasks.forEach(task => {
+      console.log(task.dueDate);
+      console.log((today > task.dueDate));      
       if (task.isDone) {
         this.completedTasks.push(task);
-      } else if (new Date() > task.dueDate) {
+      } else if (today > task.dueDate) {
         this.overdueTasks.push(task);
       } else {
         this.undoneTasks.push(task);
