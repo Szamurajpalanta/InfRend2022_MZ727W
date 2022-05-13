@@ -1,9 +1,11 @@
 const express = require('express');
 const routes = require('./routes');
 const { sequelize, Todo } = require('./models')
+const cors = require('cors');
 
 const app = express()
 app.use(express.json())
+app.use(cors());
 app.use('/api', routes);
 
 app.listen({port: 3000}, async () => {    
