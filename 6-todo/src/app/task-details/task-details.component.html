@@ -1,8 +1,12 @@
-<div class="float-container border border-primary -rounded">
+<div class="float-container border border-primary rounded">
   <div class="row">
     <div class="col-md">
       <h4 class="m-1">{{task.name}}</h4>
+    </div>
+  <div class="row">
+    <div class="col-md">      
       <p class="m-1">{{task.description}}</p>
+      <p class="m-1">Határidő: {{getDueDateString()}}</p>
     </div>
   </div>
 </div>

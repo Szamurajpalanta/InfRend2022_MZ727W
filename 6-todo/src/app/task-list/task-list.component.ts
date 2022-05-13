@@ -11,6 +11,9 @@ import { TaskService } from '../services/task.service';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [];
+  undoneTasks: Task[] = [];
+  overdueTasks: Task[] = [];
+  completedTasks: Task[] = [];
   newTask: Task = new Task;
   statusMessage: string = '';
   showStatusMessage: boolean = false;
@@ -28,7 +31,7 @@ export class TaskListComponent implements OnInit {
   newTaskForm = this.formBuilder.group({
     name: ['', [Validators.required]],
     description: [''],
-    date: ['', [Validators.required]],
+    dueDate: ['', [Validators.required]],
   });
 
   async getAllTasks() {
@@ -40,6 +43,18 @@ export class TaskListComponent implements OnInit {
     }
   }
 
+  sortTasks() {
+    this.tasks.forEach(task => {
+      if (task.isDone) {
+        this.completedTasks.push(task);
+      } else if (new Date() > task.dueDate) {
+        this.overdueTasks.push(task);
+      } else {
+        this.undoneTasks.push(task);
+      }
+    });
+  }
+
   getCurrentDate(): Date {
     return new Date();
   }
@@ -47,6 +62,7 @@ export class TaskListComponent implements OnInit {
   async addNewTask() {
     this.showStatusMessage = true;
     this.newTask = this.newTaskForm.value;
+    // this.newTask.dueDate = this.newTask.dueDate.toString();
     this.newTask.isDone = false;
     console.log(this.newTask);
 
@@ -56,7 +72,7 @@ export class TaskListComponent implements OnInit {
       this.success = true;
       this.getAllTasks();
     } catch (err: any) {
-      this.statusMessage = err.error.message();
+      this.statusMessage = err.error.message;
       this.success = false;
     }
   }

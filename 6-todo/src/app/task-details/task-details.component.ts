@@ -15,4 +15,8 @@ export class TaskDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDueDateString(): string {
+    return this.task.dueDate.toString().split('T')[0];
+  }
+
 }
