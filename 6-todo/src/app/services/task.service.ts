@@ -36,7 +36,7 @@ export class TaskService {
     return lastValueFrom(this.http.put<Task>('http://localhost:3000/api/task', task));
   }
 
-  deleteTodo(id: number) {
+  deleteTask(id: number) {
     return lastValueFrom(this.http.delete<Task>(`http://localhost:3000/api/todo/${id}`));
   }
 }

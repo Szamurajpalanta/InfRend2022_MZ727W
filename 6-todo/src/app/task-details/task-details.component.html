@@ -1,8 +1,20 @@
-<div class="float-container border border-primary rounded">
+<div class="float-container border rounded" [ngClass]="{'border-primary' : state === 0, 'border-success' : state === 1, 'border-danger' : state === -1}">
   <div class="row">
     <div class="col-md">
-      <h4 class="m-1">{{task.name}}</h4>
+      <h4 class="m-1" *ngIf="!isEditing">{{task.name}}</h4>
     </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-success m-1" (click)="markDone()" *ngIf="!isEditing && state === 0">Kész</button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-primary m-1" (click)="toggleEditMode()" *ngIf="!isEditing && state === 0 ">Szerkesztés</button>
+      <button type="button" class="btn btn-success m-1" (click)="updateTask()" *ngIf="isEditing">Kész</button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-danger m-1" (click)="deleteTask()" *ngIf="!isEditing && state === 0">Törlés</button>
+      <button type="button" class="btn btn-danger m-1" (click)="toggleEditMode()" *ngIf="isEditing">Mégse</button>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md">      
       <p class="m-1">{{task.description}}</p>
